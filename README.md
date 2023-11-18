@@ -2,7 +2,7 @@
 
 I wrote a simple pendulum and spring code in SFML. 
 
-You can watch how it works:
+You can watch how it my project works:
 https://youtu.be/TKZr7178US4
 
 Reference:
