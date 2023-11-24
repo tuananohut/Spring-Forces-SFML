@@ -2,9 +2,12 @@
 #include <chrono>
 
 #include "Vec2.h"
+#include <Windows.h>
 
-int main()
+int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
+    ::ShowWindow(::GetConsoleWindow(), SW_HIDE);
+
     sf::ContextSettings settings;
     settings.antialiasingLevel = 10;
     sf::RenderWindow window(sf::VideoMode(800, 600), "Spring Forces", sf::Style::Default, settings);
@@ -59,7 +62,7 @@ int main()
         Vec2 force = vCircle - vAnchor;
         float x = force.length() - restLength;
         force.normalize();
-        force *= k * -1.0f * x;
+        force *= k * -1.0f * x;      
         velocity += force;
         velocity += gravity;
         vCircle += velocity;
@@ -74,7 +77,7 @@ int main()
         line[0].color = sf::Color::White;
         line[1].color = sf::Color::White;
         
-        window.clear(sf::Color(101, 40, 110));
+        window.clear(sf::Color(101.0f, 40.0f, 110.0f));
 
         window.draw(circle);
         window.draw(anchor);
@@ -86,6 +89,8 @@ int main()
         const std::chrono::duration<double> elapsed_seconds{ end - start };
         sf::sleep(sf::milliseconds(static_cast<int>((1.0 / 60.0 - elapsed_seconds.count()) * 1000)));  
     }
+    
+    // std::exit(0);
 
     return 0;
 }
